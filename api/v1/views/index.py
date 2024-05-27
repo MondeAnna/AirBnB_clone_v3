@@ -3,6 +3,7 @@
 
 
 from api.v1.views import app_views
+from models import storage
 from flask import jsonify
 
 
@@ -11,3 +12,16 @@ def status_route():
     """JSON Serialiasble Object with site status"""
 
     return jsonify({"status": "OK"})
+
+@app_views("/stats", methods["GET"], strict_slashes=False)
+def stats_route():
+    """JSON Serialiasble Object with site stats"""
+
+    return jsonify({
+        "amnesty": storage.count(Amensty),
+        "cities": storage.count(City),
+        "places": storage.count(Place),
+        "reviews": storage.count(Review),
+        "states": storage.count(State),
+        "users": storage.count(User),
+    })
