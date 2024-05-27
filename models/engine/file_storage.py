@@ -41,7 +41,7 @@ class FileStorage:
 
     def get(self, cls, id):
         """get model based on id and class name"""
-        key = f"{cls}.{id}"
+        key = f"{cls.__name__}.{id}"
         return self.all().get(key)
 
     def new(self, obj):
