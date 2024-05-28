@@ -2,18 +2,20 @@
 """api v1 index"""
 
 
-from api.v1.views import app_views
-from models import storage
 from flask import jsonify
 
 
-@app_views("/status", methods["GET"], strict_slashes=False)
+from api.v1.views import app_views
+from models import storage
+
+
+@app_views.route("/status", methods["GET"], strict_slashes=False)
 def status_route():
     """JSON Serialiasble Object with site status"""
 
     return jsonify({"status": "OK"})
 
-@app_views("/stats", methods["GET"], strict_slashes=False)
+@app_views.route("/stats", methods["GET"], strict_slashes=False)
 def stats_route():
     """JSON Serialiasble Object with site stats"""
 
